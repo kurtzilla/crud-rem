@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
-import { saveGame } from './actions';
+import { saveGame } from '../actions/games_actions';
 
 class GameForm extends Component {
   state = {

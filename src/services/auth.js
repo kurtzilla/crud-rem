@@ -3,11 +3,11 @@ import { EventEmitter } from 'events';
 import React, {Component, PropTypes} from 'react';
 import Auth0Lock from 'auth0-lock';
 
-
 const NEXT_PATH_KEY = 'next_path';
 const LOGIN_ROUTE = '/login';// this is the page to go to when in need of auth
 const ROOT_ROUTE = '/';
 const DEFAULT_POST_LOGIN_ROUTE = '/profile/edit';// this is where to go after auth
+
 // key names have been updated from original source
 const ID_TOKEN_KEY = 'auth0_id_token';
 const ACCESS_TOKEN_KEY = 'auth0_access_token';
@@ -73,11 +73,14 @@ export function login(nextPath, router) {
 
 // v4 - pass in the router
 export function logout(router) {
+  console.log('loggin out')
   clearNextPath();
+  
+  
+  router.transitionTo(ROOT_ROUTE);
   clearIdToken();
   clearAccessToken();
   clearProfile();
-  router.transitionTo(ROOT_ROUTE);
 }
 
 export function requireAuth(nextState, replace) {

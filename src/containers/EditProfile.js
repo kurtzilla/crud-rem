@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {connectProfile} from './auth';
-import './EditProfile.css';
+import {connectProfile} from '../services/auth';
 
 class EditProfile extends Component {
   static propTypes = {

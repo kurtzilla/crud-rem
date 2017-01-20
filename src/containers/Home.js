@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {connectProfile} from './auth';
+import {connectProfile} from '../services/auth';
 
 class Home extends Component {
   static propTypes = {

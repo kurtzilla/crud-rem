@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link, Match, Redirect } from 'react-router';
-import { isLoggedIn, logout } from './auth';
+import { isLoggedIn, logout } from '../services/auth';
 
 import Home from './Home';
 import GamesPage from './GamesPage';

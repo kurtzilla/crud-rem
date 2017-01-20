@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchGames } from './actions';
-import GamesList from './GamesList';
+import { fetchGames } from '../actions/games_actions';
+
+import GamesList from '../components/GamesList';
 
 class GamesPage extends Component{
   componentDidMount(){
