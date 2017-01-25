@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import { Link, Match, Redirect } from 'react-router';
-import { isLoggedIn, logout } from '../services/auth';
+
+import { isLoggedIn } from '../services/auth0';
+import { logout } from '../actions/auth_actions';
+
 
 import Home from './Home';
 import GamesPage from './GamesPage';
@@ -18,8 +21,8 @@ class App extends Component {
   // }
   
   goLogout(e) {
-    e.preventDefault()
-    logout(this.context.router);
+    e.preventDefault();
+    this.props.dispatch(logout({data:'mydata'}, this.context.router));
   }
   
   render() {
@@ -63,7 +66,8 @@ class App extends Component {
 }
 
 App.contextTypes = {
-  router: React.PropTypes.object
+  router: React.PropTypes.object,
+  store: React.PropTypes.object.isRequired
 }
 
 export default connect()(App)

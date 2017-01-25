@@ -2,21 +2,26 @@ import decode from 'jwt-decode';
 import { EventEmitter } from 'events';
 import React, {Component, PropTypes} from 'react';
 import Auth0Lock from 'auth0-lock';
+import Promise from 'bluebird';
 
-const NEXT_PATH_KEY = 'next_path';
-const LOGIN_ROUTE = '/login';// this is the page to go to when in need of auth
-const ROOT_ROUTE = '/';
-const DEFAULT_POST_LOGIN_ROUTE = '/profile/edit';// this is where to go after auth
-
-// key names have been updated from original source
-const ID_TOKEN_KEY = 'auth0_id_token';
-const ACCESS_TOKEN_KEY = 'auth0_access_token';
-const PROFILE_KEY = 'auth0_profile';
+import { authenticated } from '../actions/auth_actions';
 
 
 if (!process.env.REACT_APP_AUTH0_CLIENT_ID || !process.env.REACT_APP_AUTH0_DOMAIN) {
   throw new Error('Please define `REACT_APP_AUTH0_CLIENT_ID` and `REACT_APP_AUTH0_DOMAIN` in your .env file');
 }
+
+
+const NEXT_PATH_KEY = 'next_path';
+const LOGIN_ROUTE = '/login';// this is the page to go to when in need of auth
+const ROOT_ROUTE = '/';
+const DEFAULT_POST_LOGIN_ROUTE = '/profile/edit';// this is where to go after auth
+const ID_TOKEN_KEY = 'auth0_id_token';
+const ACCESS_TOKEN_KEY = 'auth0_access_token';
+const PROFILE_KEY = 'auth0_profile';
+
+
+const events = new EventEmitter();
 
 const lock = new Auth0Lock(
   process.env.REACT_APP_AUTH0_CLIENT_ID,
@@ -28,40 +33,14 @@ const lock = new Auth0Lock(
   }
 );
 
-const events = new EventEmitter();
-
-lock.on('authenticated', authResult => {
-  setIdToken(authResult.idToken);
-  setAccessToken(authResult.accessToken);
-  lock.getUserInfo(authResult.accessToken, (error, profile) => {
-    if (error) {
-      return setProfile({error});
-    }
-    
-    setProfile(profile);
-    let redirectTo = getNextPath();
-    clearNextPath();
-    
-    console.log('logged in - now redirecting')
-      
-    lock.router.transitionTo(redirectTo);
-  });
-});
-
-
-// also on auth
-// link user account
-// if not exists - create
-// can we do as jwt? to ensure local data is in sync with our server (integrity)
-// save info locally - not sure what we need - that can be refined later
-// now we can redirect!
-
-
 // v4 - pass in the router and assign to lock object
-export function login(nextPath, router) {
+export function login(nextPath, router, dispatch) {
   var nPath = nextPath || DEFAULT_POST_LOGIN_ROUTE;
   setNextPath(nPath);
+  
+  //console.log('LOCK Login', router, dispatch)
   lock.router = router;
+  lock.dispatch = dispatch;
   lock.show({});
   
   return {
@@ -71,16 +50,74 @@ export function login(nextPath, router) {
   }
 }
 
-// v4 - pass in the router
-export function logout(router) {
-  console.log('loggin out')
+// call redux action
+lock.on('authenticated', authResult => {
+  // 1
+  console.log('LOCK', lock)
+  lock.dispatch(authenticated(authResult));
+});
+
+
+export function postAuth(authResult){
+  // 3
+  // console.log('POST AUTH')
+  
+  setIdToken(authResult.idToken);
+  setAccessToken(authResult.accessToken);
+  
+  // return a promise
+  return new Promise(function(resolve, reject) {
+    lock.getUserInfo(authResult.accessToken, (error, profile) => {
+      if (error) {
+        setProfile({error});
+        reject(error);
+      }
+  
+      setProfile(profile);
+      let redirectTo = getNextPath();
+      clearNextPath();
+  
+      // console.log('logged in - now redirecting', redirectTo)
+      lock.router.transitionTo(redirectTo);
+      resolve(profile);
+    });
+  });
+}
+
+
+// v4 - pass in the router and transitionTo location
+export function logout(router, transitionTo) {
+  // console.log('loggin out', router, transitionTo)
+  
   clearNextPath();
-  
-  
-  router.transitionTo(ROOT_ROUTE);
   clearIdToken();
   clearAccessToken();
   clearProfile();
+  
+  router.transitionTo(transitionTo || ROOT_ROUTE);
+}
+
+// v4 - export function
+export function isLoggedIn() {
+  
+  const idToken = getIdToken();
+  // console.log('verifying login at local storage', idToken)
+  return idToken && !isTokenExpired(idToken);
+}
+
+function getTokenExpirationDate(encodedToken) {
+  const token = decode(encodedToken);
+  if (!token.exp) { return null; }
+  
+  const date = new Date(0);
+  date.setUTCSeconds(token.exp);
+  
+  return date;
+}
+
+function isTokenExpired(token) {
+  const expirationDate = getTokenExpirationDate(token);
+  return expirationDate < new Date();
 }
 
 export function requireAuth(nextState, replace) {
@@ -89,6 +126,10 @@ export function requireAuth(nextState, replace) {
     replace({pathname: LOGIN_ROUTE});
   }
 }
+
+
+
+
 
 export function connectProfile(WrappedComponent) {
   return class ProfileContainer extends Component {
@@ -146,6 +187,7 @@ export function fetchAsUser(input, init={}) {
   });
 }
 
+
 function subscribeToProfile(subscription) {
   events.on('profile_updated', subscription);
   
@@ -184,7 +226,7 @@ function setProfile(profile) {
   events.emit('profile_updated', profile);
 }
 
-function getProfile() {
+export function getProfile() {
   return JSON.parse(localStorage.getItem(PROFILE_KEY));
 }
 
@@ -201,7 +243,7 @@ function setAccessToken(accessToken) {
   localStorage.setItem(ACCESS_TOKEN_KEY, accessToken);
 }
 
-function getIdToken() {
+export function getIdToken() {
   return localStorage.getItem(ID_TOKEN_KEY);
 }
 
@@ -229,23 +271,4 @@ function clearNextPath() {
   localStorage.removeItem(NEXT_PATH_KEY);
 }
 
-// v4 - export function
-export function isLoggedIn() {
-  const idToken = getIdToken();
-  return idToken && !isTokenExpired(idToken);
-}
 
-function getTokenExpirationDate(encodedToken) {
-  const token = decode(encodedToken);
-  if (!token.exp) { return null; }
-  
-  const date = new Date(0);
-  date.setUTCSeconds(token.exp);
-  
-  return date;
-}
-
-function isTokenExpired(token) {
-  const expirationDate = getTokenExpirationDate(token);
-  return expirationDate < new Date();
-}
