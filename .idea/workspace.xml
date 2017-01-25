@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e9740ccf-0c0b-4dcf-b96d-b51e71df2d74" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/services/auth.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/App.js" afterPath="$PROJECT_DIR$/src/containers/App.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/EditProfile.js" afterPath="$PROJECT_DIR$/src/containers/EditProfile.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Home.js" afterPath="$PROJECT_DIR$/src/containers/Home.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/containers/Login.js" afterPath="$PROJECT_DIR$/src/containers/Login.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/games_reducer.js" afterPath="$PROJECT_DIR$/src/reducers/games_reducer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/reducers/rootReducer.js" afterPath="$PROJECT_DIR$/src/reducers/rootReducer.js" />
-    </list>
+    <list default="true" id="e9740ccf-0c0b-4dcf-b96d-b51e71df2d74" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -26,13 +16,13 @@
     <option name="PATCH_PATH" value="" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.30807522">
+    <splitter split-orientation="horizontal" split-proportion="0.38010204">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="auth_actions.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/actions/auth_actions.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="40">
+                <state relative-caret-position="-60">
                   <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
                   <folding />
                 </state>
@@ -52,7 +42,7 @@
         </leaf>
       </split-first>
       <split-second>
-        <splitter split-orientation="horizontal" split-proportion="0.5">
+        <splitter split-orientation="horizontal" split-proportion="0.53886926">
           <split-first>
             <leaf>
               <file leaf-file-name="EditProfile.js" pinned="false" current-in-tab="false">
@@ -94,7 +84,7 @@
               <file leaf-file-name="auth0.js" pinned="false" current-in-tab="true">
                 <entry file="file://$PROJECT_DIR$/src/services/auth0.js">
                   <provider selected="true" editor-type-id="text-editor">
-                    <state relative-caret-position="100">
+                    <state relative-caret-position="60">
                       <caret line="63" column="2" lean-forward="false" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="2" />
                       <folding />
                     </state>
@@ -185,9 +175,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-1918" />
-    <option name="y" value="30" />
-    <option name="width" value="1899" />
-    <option name="height" value="1037" />
+    <option name="y" value="23" />
+    <option name="width" value="1918" />
+    <option name="height" value="1162" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="1" id="Add" />
@@ -409,21 +399,21 @@
       <workItem from="1484959304016" duration="10000" />
       <workItem from="1485019563893" duration="93000" />
       <workItem from="1485021278592" duration="2100000" />
-      <workItem from="1485150684101" duration="17411000" />
+      <workItem from="1485150684101" duration="17840000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36547000" />
+    <option name="totallyTimeSpent" value="36976000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1918" y="30" width="1899" height="1037" extended-state="0" />
+    <frame x="-1918" y="23" width="1918" height="1162" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.04791996" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.047445256" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.090640396" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08070175" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -733,7 +723,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/services/auth0.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="100">
+        <state relative-caret-position="60">
           <caret line="63" column="2" lean-forward="false" selection-start-line="63" selection-start-column="2" selection-end-line="63" selection-end-column="2" />
           <folding />
         </state>
@@ -749,7 +739,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/actions/auth_actions.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
+        <state relative-caret-position="-60">
           <caret line="2" column="45" lean-forward="false" selection-start-line="2" selection-start-column="45" selection-end-line="2" selection-end-column="45" />
           <folding />
         </state>
