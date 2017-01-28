@@ -19,7 +19,7 @@ export default function auth(state = {
   switch(action.type){
     
     case USER_DATA_FETCHED:
-      console.log('USER DATA FETHCED reducer', action)
+      console.log('USER DATA FETCHED reducer', action)
       return Object.assign({}, state, {
         emailAddress: action.json
         
