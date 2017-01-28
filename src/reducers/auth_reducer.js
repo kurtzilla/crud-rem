@@ -2,6 +2,16 @@ import { AUTHENTICATED, LOGOUT, USER_DATA_FETCHED } from '../actions/auth_action
 import { logout } from '../services/auth0';
 
 
+const initialState = {
+  isFetching: false,
+  auth0_idToken: '',
+  auth0_accessToken: '',
+  auth0_profile: {},
+  username: '',
+  user_profile: {}
+}
+
+
 export default function auth(state = {
   isFetching: false,
   profile: {}
